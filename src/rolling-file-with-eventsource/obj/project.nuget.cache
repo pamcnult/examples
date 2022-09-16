@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "72Qy7lbB/XiiFWe/sb9MqW/RLAXJnysKAi2K4XpfheUNfKXb6JmaEIM0qVF5jeHe9lyueuitxo1XgNnEUaM+/g==",
+  "success": true,
+  "projectFilePath": "C:\\source\\session\\examples\\src\\rolling-file-with-eventsource\\rolling-file-with-eventsource.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pamcnult\\.nuget\\packages\\microsoft.diagnostics.tracing.traceevent\\3.0.4\\microsoft.diagnostics.tracing.traceevent.3.0.4.nupkg.sha512",
+    "C:\\Users\\pamcnult\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

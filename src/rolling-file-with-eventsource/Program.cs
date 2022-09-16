@@ -8,7 +8,7 @@ namespace rolling_file_with_eventsource
     {
         private static readonly TimeSpan fileRollingInterval = TimeSpan.FromSeconds(10);
 
-        private const string TraceFileNamePrefix = "Trace.";
+        private const string TraceFileNamePrefix = "C:\\Traces\\Trace.";
         private const string TraceFileNameSuffix = ".etl";
 
         private static int FileNumber = 1;
@@ -16,7 +16,8 @@ namespace rolling_file_with_eventsource
         public async static Task Main(string[] args)
         {
             string fileName = GetNextFileName();
-            using TraceEventSession session = new TraceEventSession("Rolling-File-With-EventSource", fileName);
+            string sessionName = "Rolling-File-With-EventSource";
+            using TraceEventSession session = new TraceEventSession(sessionName, fileName);
             Console.WriteLine($"Setup session to write to {fileName}.");
 
             // Register for CTRL+C.
@@ -32,6 +33,9 @@ namespace rolling_file_with_eventsource
             // Start collecting events from the EventProducer.
             session.EnableProvider("EventProducer", Microsoft.Diagnostics.Tracing.TraceEventLevel.Verbose, unchecked((ulong)-1));
 
+
+            using TraceEventSession attachedSession = TraceEventSession.GetActiveSession(sessionName);
+
             do
             {
                 // Wait while events are written to the current file.
@@ -40,7 +44,7 @@ namespace rolling_file_with_eventsource
 
                 // Switch to the next file.
                 fileName = GetNextFileName();
-                session.SetFileName(fileName);
+                attachedSession.SetFileName(fileName);
                 Console.WriteLine($"Rolled to new file {fileName}");
             }
             while (true);
